@@ -110,7 +110,9 @@ def fn():
                 text_auto=False,
             )
 
-            fig.update_yaxes(range=[0, 5])
+            respondercount = sqldf(f"select count(*) as responderCount from df_response_header where grp = '{group}'")
+
+            fig.update_yaxes(range=[0, respondercount], dtick=1)
             st.plotly_chart(fig)
             # print(_df)
             # st.bar_chart(_df, x="Rank", y="ResponderCount", color="Color", stack=True)`
